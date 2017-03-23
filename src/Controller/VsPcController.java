@@ -38,12 +38,6 @@ public class VsPcController {
         btn8.setOnAction(new MyButtonHandler());
     }
 
-//    @FXML
-//    private void setMark() {
-//
-//        System.out.print("Hello");
-//    }
-
     private class MyButtonHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent evt) {
