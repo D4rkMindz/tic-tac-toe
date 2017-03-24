@@ -51,6 +51,33 @@ public class MediumPlayService {
         return result;
     }
 
+    public void validateCheckedRows(String[] positions){
+        if (!positions[0].equals("empty") && !positions[1].equals("empty") && !positions[2].equals("empty")){
+            checkedRows[0] = true;
+        }
+        if (!positions[3].equals("empty") && !positions[4].equals("empty") && !positions[5].equals("empty")){
+            checkedRows[1] = true;
+        }
+        if (!positions[6].equals("empty") && !positions[7].equals("empty") && !positions[8].equals("empty")){
+            checkedRows[2] = true;
+        }
+        if (!positions[0].equals("empty") && !positions[3].equals("empty") && !positions[6].equals("empty")){
+            checkedRows[3] = true;
+        }
+        if (!positions[1].equals("empty") && !positions[4].equals("empty") && !positions[7].equals("empty")){
+            checkedRows[4] = true;
+        }
+        if (!positions[2].equals("empty") && !positions[5].equals("empty") && !positions[8].equals("empty")){
+            checkedRows[5] = true;
+        }
+        if (!positions[0].equals("empty") && !positions[4].equals("empty") && !positions[8].equals("empty")){
+            checkedRows[6] = true;
+        }
+        if (!positions[2].equals("empty") && !positions[4].equals("empty") && !positions[6].equals("empty")){
+            checkedRows[7] = true;
+        }
+    }
+
     private int checkForChances(String[] positions, char computersChar, int chanceForHuman1, int chanceForHuman2) {
         this.setDefaults();
         int result = 123;
@@ -136,6 +163,8 @@ public class MediumPlayService {
 
     private int checkRow(String[] positions, int nr1, int nr2, int nr3, int checkedRowsNumber) {
         int result = 123;
+        this.validateCheckedRows(positions);
+
         if (positions[nr1].equals("cross") && positions[nr2].equals("cross") && !this.checkedRows[checkedRowsNumber]) {
             this.checkedRows[checkedRowsNumber] = true;
             result = nr3;
@@ -166,6 +195,7 @@ public class MediumPlayService {
 
     private int checkRowForWinning(String[] positions, int nr1, int nr2, int nr3, char computersChar, int checkedRowsNumber) {
         int result = 123;
+        this.validateCheckedRows(positions);
         if (this.checkedRows[checkedRowsNumber]) {
             return result;
         }
@@ -177,15 +207,15 @@ public class MediumPlayService {
         }
         if (positions[nr1].equals(checkValue) && positions[nr2].equals(checkValue) && positions[nr3].equals("empty")) {
             this.checkedRows[checkedRowsNumber] = true;
-            result = nr3;
+            return nr3;
         }
         if (positions[nr1].equals(checkValue) && positions[nr3].equals(checkValue) && positions[nr2].equals("empty")) {
             this.checkedRows[checkedRowsNumber] = true;
-            result = nr2;
+            return nr2;
         }
         if (positions[nr2].equals(checkValue) && positions[nr3].equals(checkValue) && positions[nr1].equals("empty")) {
             this.checkedRows[checkedRowsNumber] = true;
-            result = nr1;
+            return nr1;
         }
         return result;
     }
