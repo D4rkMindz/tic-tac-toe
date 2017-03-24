@@ -1,44 +1,227 @@
 package Service;
 
-/**
- * Created by Björn on 24.03.2017.
- */
+import javafx.scene.control.Button;
+
+import java.util.Random;
+
 public class MediumPlayService {
-    public int checkVerticalDoubels(String[] positions) {
-        int result;
-        result = this.checkHoizontalRow(positions, 0, 1, 2);
-        if (result != 123) {
-            return result;
+    private boolean[] checkedRows = new boolean[8];
+
+    private void setDefaults() {
+        if (!checkedRows[0]) {
+            checkedRows[0] = false;
         }
-        result = this.checkHoizontalRow(positions, 3, 4, 5);
-        if (result != 123) {
-            return result;
+        if (!checkedRows[1]) {
+            checkedRows[1] = false;
         }
-        result = this.checkHoizontalRow(positions, 6, 7, 8);
+        if (!checkedRows[2]) {
+            checkedRows[2] = false;
+        }
+        if (!checkedRows[3]) {
+            checkedRows[3] = false;
+        }
+        if (!checkedRows[4]) {
+            checkedRows[4] = false;
+        }
+        if (!checkedRows[5]) {
+            checkedRows[5] = false;
+        }
+        if (!checkedRows[6]) {
+            checkedRows[6] = false;
+        }
+        if (!checkedRows[7]) {
+            checkedRows[7] = false;
+        }
+
+        checkedRows[1] = false;
+        checkedRows[2] = false;
+        checkedRows[3] = false;
+        checkedRows[4] = false;
+        checkedRows[5] = false;
+        checkedRows[6] = false;
+        checkedRows[7] = false;
+    }
+
+    public int playMedium(String[] positions, char computersChar, int playsPossible, boolean[] btnActive, int chanceForHuman1, int chanceForHuman2) {
+        int result = this.checkForChances(positions, computersChar, chanceForHuman1, chanceForHuman2);
+        if (result == 123) {
+            EasyPlayService easyPlayService = new EasyPlayService();
+            result = easyPlayService.playEasy(btnActive, playsPossible);
+        }
         return result;
     }
 
-    private int checkHoizontalRow(String[] positions, int nr1, int nr2, int nr3) {
+    private int checkForChances(String[] positions, char computersChar, int chanceForHuman1, int chanceForHuman2) {
+        this.setDefaults();
         int result = 123;
-        if (positions[nr1].equals("cross") && positions[nr2].equals("cross")) {
-            result = 2;
+
+        Random r = new Random();
+        int chanceForHuman = r.nextInt(100);
+
+
+        if (chanceForHuman < chanceForHuman1) {
+            result = this.checkForWinningHorizontal(positions, computersChar);
+            if (result != 123) {
+                return result;
+            }
+
+            result = this.checkForWinningVertical(positions, computersChar);
+            if (result != 123) {
+                return result;
+            }
+
+            result = this.checkForWinningCross(positions, computersChar);
+            if (result != 123) {
+                return result;
+            }
         }
-        if (positions[nr2].equals("cross") && positions[nr3].equals("cross")) {
-            result = 0;
+        if (chanceForHuman < chanceForHuman2) {
+            result = this.checkHorizontalDoubles(positions);
+            if (result != 123) {
+                return result;
+            }
+
+            result = this.checkVerticalDoubles(positions);
+            if (result != 123) {
+                return result;
+            }
+
+            result = this.checkCrossDoubles(positions);
         }
-        if (positions[nr1].equals("cross") && positions[nr3].equals("cross")) {
-            result = 1;
+        return result;
+    }
+
+    private int checkHorizontalDoubles(String[] positions) {
+        int result;
+        result = this.checkRow(positions, 0, 1, 2, 0);
+        if (result != 123) {
+
+            return result;
+        }
+        result = this.checkRow(positions, 3, 4, 5, 1);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRow(positions, 6, 7, 8, 2);
+        return result;
+    }
+
+    private int checkVerticalDoubles(String[] positions) {
+        int result;
+        result = this.checkRow(positions, 0, 3, 6, 3);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRow(positions, 1, 4, 7, 4);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRow(positions, 2, 5, 8, 5);
+        return result;
+    }
+
+    private int checkCrossDoubles(String[] positions) {
+        int result;
+        result = this.checkRow(positions, 0, 4, 8, 6);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRow(positions, 2, 4, 6, 7);
+        if (result != 123) {
+            return result;
         }
 
-        if (positions[nr1].equals("circle") && positions[nr2].equals("circle")) {
-            result = 2;
+        return result;
+    }
+
+    private int checkRow(String[] positions, int nr1, int nr2, int nr3, int checkedRowsNumber) {
+        int result = 123;
+        if (positions[nr1].equals("cross") && positions[nr2].equals("cross") && !this.checkedRows[checkedRowsNumber]) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr3;
         }
-        if (positions[nr2].equals("circle") && positions[nr3].equals("circle")) {
-            result = 0;
+        if (positions[nr2].equals("cross") && positions[nr3].equals("cross") && !this.checkedRows[checkedRowsNumber]) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr1;
         }
-        if (positions[nr1].equals("circle") && positions[nr3].equals("circle")) {
-            result = 1;
+        if (positions[nr1].equals("cross") && positions[nr3].equals("cross") && !this.checkedRows[checkedRowsNumber]) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr2;
         }
+
+        if (positions[nr1].equals("circle") && positions[nr2].equals("circle") && !this.checkedRows[checkedRowsNumber]) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr3;
+        }
+        if (positions[nr2].equals("circle") && positions[nr3].equals("circle") && !this.checkedRows[checkedRowsNumber]) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr1;
+        }
+        if (positions[nr1].equals("circle") && positions[nr3].equals("circle") && !this.checkedRows[checkedRowsNumber]) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr2;
+        }
+        return result;
+    }
+
+    private int checkRowForWinning(String[] positions, int nr1, int nr2, int nr3, char computersChar, int checkedRowsNumber) {
+        int result = 123;
+        if (this.checkedRows[checkedRowsNumber]) {
+            return result;
+        }
+        String checkValue;
+        if (computersChar == 'x') {
+            checkValue = "cross";
+        } else {
+            checkValue = "circle";
+        }
+        if (positions[nr1].equals(checkValue) && positions[nr2].equals(checkValue) && positions[nr3].equals("empty")) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr3;
+        }
+        if (positions[nr1].equals(checkValue) && positions[nr3].equals(checkValue) && positions[nr2].equals("empty")) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr2;
+        }
+        if (positions[nr2].equals(checkValue) && positions[nr3].equals(checkValue) && positions[nr1].equals("empty")) {
+            this.checkedRows[checkedRowsNumber] = true;
+            result = nr1;
+        }
+        return result;
+    }
+
+    private int checkForWinningHorizontal(String[] positions, char computersChar) {
+        int result = this.checkRowForWinning(positions, 0, 1, 2, computersChar, 0);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRowForWinning(positions, 3, 4, 5, computersChar, 1);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRowForWinning(positions, 6, 7, 8, computersChar, 2);
+        return result;
+    }
+
+    private int checkForWinningVertical(String[] positions, char computersChar) {
+        int result = this.checkRowForWinning(positions, 0, 3, 6, computersChar, 3);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRowForWinning(positions, 1, 4, 7, computersChar, 4);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRowForWinning(positions, 2, 5, 8, computersChar, 5);
+        return result;
+    }
+
+    private int checkForWinningCross(String[] positions, char computersChar) {
+        int result = this.checkRowForWinning(positions, 0, 4, 8, computersChar, 6);
+        if (result != 123) {
+            return result;
+        }
+        result = this.checkRowForWinning(positions, 2, 4, 6, computersChar, 7);
         return result;
     }
 }

@@ -1,5 +1,7 @@
 package Controller;
 
+import Service.EasyPlayService;
+import Service.MediumPlayService;
 import Service.PlayService;
 import Start.MainController;
 import javafx.event.ActionEvent;
@@ -28,7 +30,7 @@ public class VsPcController {
     private Button[] btnArray = new Button[9];
 
     @FXML
-    public Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, easy, medium;
+    public Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, easy, medium, hard;
 
     @FXML
     private boolean[] btnActive = new boolean[9];
@@ -47,11 +49,14 @@ public class VsPcController {
             Winner.setText("Player " + (Character.toUpperCase(charWinner)) + " Won");
         }
 
-        if(computerLevel == 0){
+        if (computerLevel == 0) {
             easy.setStyle("-fx-background-color: chartreuse");
         }
-        if (computerLevel == 1){
+        if (computerLevel == 1) {
             medium.setStyle("-fx-background-color: chartreuse");
+        }
+        if (computerLevel == 2) {
+            hard.setStyle("-fx-background-color: chartreuse");
         }
 
         this.addAction(btn0, 0);
@@ -149,13 +154,18 @@ public class VsPcController {
         return btn;
     }
 
-    public void setDifficultyEasy(){
+    public void setDifficultyEasy() {
         computerLevel = 0;
         reset();
     }
 
-    public void setDifficultyMedium(){
+    public void setDifficultyMedium() {
         computerLevel = 1;
+        reset();
+    }
+
+    public void setDifficultyHard() {
+        computerLevel = 2;
         reset();
     }
 
@@ -176,10 +186,13 @@ public class VsPcController {
             return;
         }
         if (computerLevel == 0) {
-           this.playEasy();
-        }
-        if (computerLevel == 1){
             this.playEasy();
+        }
+        if (computerLevel == 1) {
+            this.playMedium();
+        }
+        if (computerLevel == 2){
+            this.playHard();
         }
     }
 
@@ -189,23 +202,38 @@ public class VsPcController {
         System.out.print("Player " + winner + " won");
     }
 
-    private void playEasy(){
-        Random r = new Random();
-        boolean played = false;
-        do {
-            int randomBtn = r.nextInt(8);
-            if (btnActive[randomBtn]) {
-                Button btn = btnArray[randomBtn];
-                played = true;
-                btn.fire();
-            }
-            if (playsPossible < 2) {
-                played = true;
-            }
-        } while (!played);
+    private void playEasy() {
+        EasyPlayService easyPlayService = new EasyPlayService();
+        int result = easyPlayService.playEasy(btnActive, playsPossible);
+        Button btn = btnArray[result];
+        btn.fire();
+
     }
 
-    private void playMedium(){
+    private void playMedium() {
+        MediumPlayService mediumPlayService = new MediumPlayService();
 
+        char computerPlayWith;
+        if (humanPlaysWith == 'x') {
+            computerPlayWith = 'o';
+        } else {
+            computerPlayWith = 'x';
+        }
+        int result = mediumPlayService.playMedium(positions, computerPlayWith, playsPossible, btnActive, 50,70);
+        Button btn = btnArray[result];
+        btn.fire();
+    }
+
+    private void playHard(){
+        MediumPlayService mediumPlayService = new MediumPlayService();
+        char computerPlayWith;
+        if (humanPlaysWith == 'x') {
+            computerPlayWith = 'o';
+        } else {
+            computerPlayWith = 'x';
+        }
+        int result = mediumPlayService.playMedium(positions, computerPlayWith, playsPossible, btnActive, 80,100);
+        Button btn = btnArray[result];
+        btn.fire();
     }
 }

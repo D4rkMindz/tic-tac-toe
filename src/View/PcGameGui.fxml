@@ -56,5 +56,6 @@
       <Button fx:id="easy" layoutX="417.0" layoutY="163.0" mnemonicParsing="false" onAction="#setDifficultyEasy" prefHeight="25.0" prefWidth="61.0" styleClass="reset" stylesheets="@../style/style.css" text="Easy" />
       <Button fx:id="medium" layoutX="417.0" layoutY="188.0" mnemonicParsing="false" onAction="#setDifficultyMedium" styleClass="reset" stylesheets="@../style/style.css" text="Medium" />
       <Label layoutX="424.0" layoutY="142.0" text="Difficulty" />
+      <Button fx:id="hard" layoutX="417.0" layoutY="213.0" mnemonicParsing="false" onAction="#setDifficultyHard" prefHeight="25.0" prefWidth="61.0" styleClass="reset" stylesheets="@../style/style.css" text="Hard" />
     </children>
 </AnchorPane>
