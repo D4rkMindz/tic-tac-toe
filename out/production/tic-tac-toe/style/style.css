@@ -7,26 +7,6 @@ and open the template in the editor.
     Created on : 13.02.2017, 19:21:20
     Author     : Björn Pfoster
 */
-.root{
-    -fx-background-color: #0f0;
-}
-.label {
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}
-#welcome-text {
-    -fx-font-size: 32px;
-    -fx-font-family: "Arial Black";
-    -fx-fill: #818181;
-    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
-}
-#actiontarget {
-    -fx-fill: FIREBRICK;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}
 .button{
     -fx-text-fill: white;
     -fx-background-radius: 0;
@@ -37,9 +17,34 @@ and open the template in the editor.
     -fx-boder-color: white;
 }
 
-.cross {
-    -fx-background-image: url("../img/cross.png");
+.reset {
+    -fx-background-color: black;
 }
-.circle {
-    -fx-background-image: url("../img/circle.png");
+
+#btn0 {
+    -fx-border-color: white black black white;
+}
+#btn1 {
+    -fx-border-color: white black black black;
+}
+#btn2 {
+    -fx-border-color: white white black black;
+}
+#btn3 {
+    -fx-border-color: black black black white;
+}
+#btn4 {
+    -fx-border-color: black;
+}
+#btn5 {
+    -fx-border-color: black white black black;
+}
+#btn6 {
+    -fx-border-color: black black white white;
+}
+#btn7 {
+    -fx-border-color: black black white black;
+}
+#btn8 {
+    -fx-border-color: black white white black;
 }

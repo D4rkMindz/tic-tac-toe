@@ -5,6 +5,7 @@ import Start.MainController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
@@ -15,9 +16,23 @@ public class LoginController {
     public TextField password;
     public Button Register;
     public Button Login;
+    public Label errorMessage;
 
     public void setStart(MainController mainController) {
+
         this.mainController = mainController;
+        LoginValidationService ls = new LoginValidationService();
+
+        boolean err = ls.error;
+        if (err) {
+            this.errorMessage.setText("Invalid Credentials");
+        }
+
+    }
+
+    @FXML
+    private void handleRegister() {
+        mainController.initRegisterGui();
     }
 
     @FXML
@@ -26,15 +41,15 @@ public class LoginController {
         String password = this.password.getText();
 
         LoginValidationService loginValServ = new LoginValidationService();
-        if (loginValServ.isLoginValid(username, password)){
+        if (loginValServ.isLoginValid(username, password)) {
             mainController.initStartGui();
-        } else{
+        } else {
             mainController.initLoginGui();
         }
     }
 
     @FXML
-    private void handleRegister() {
-        mainController.initRegisterGui();
+    private void handleProxy() {
+        mainController.initProxyGui();
     }
 }
