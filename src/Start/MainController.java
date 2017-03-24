@@ -1,9 +1,6 @@
 package Start;
 
-import Controller.RegisterController;
-import Controller.LoginController;
-import Controller.StartController;
-import Controller.VsPcController;
+import Controller.*;
 import Service.LoginValidationService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +19,7 @@ public class MainController extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         stage.setTitle("Tic Tac Toe");
-        initLoginGui();
+        initPcGameGui();
 
 
     }
@@ -84,17 +81,35 @@ public class MainController extends Application {
             e.printStackTrace();
         }
     }
+
     public void initPcGameGui() {
         try {
-            LoginValidationService lvs = new LoginValidationService();
-            if (!lvs.isLoggedIn()) {
-                this.initLoginGui();
-            }
+//            LoginValidationService lvs = new LoginValidationService();
+//            if (!lvs.isLoggedIn()) {
+//                this.initLoginGui();
+//            }
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/View/PcGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             VsPcController controller = loader.getController();
+            controller.setStart(this);
+
+            Scene scene = new Scene(anchorPane);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initProxyGui() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/View/ProxyGui.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            ProxyController controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);

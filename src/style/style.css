@@ -17,6 +17,10 @@ and open the template in the editor.
     -fx-boder-color: white;
 }
 
+.reset {
+    -fx-background-color: black;
+}
+
 #btn0 {
     -fx-border-color: white black black white;
 }
