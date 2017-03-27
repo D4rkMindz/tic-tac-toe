@@ -21,21 +21,22 @@ public class ConnectionService {
         password = pass;
     }
 
-    public URLConnection initUrlConnection(boolean useProxy) throws IOException {
+    public URLConnection initUrlConnection(boolean useProxy, String url) throws IOException {
         URLConnection con = null;
 //        String url = "http://files.d4rkmindz.ch/tictactoe.php";
-        String url = "http://localhost/tictactoe/login.php";
+
 
         try {
 
             if (useProxy) {
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("172.20.10.11", 3128));
+                ProxyService proxyService = new ProxyService();
+                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyService.ip, proxyService.port));
                 con = new URL(url).openConnection(proxy);
 
                 Authenticator authenticator = new Authenticator() {
 
                     public PasswordAuthentication getPasswordAuthentication() {
-                        return (new PasswordAuthentication("bjoern.pfoster",
+                        return (new PasswordAuthentication(proxyService.username,
                                 password.toCharArray()));
                     }
                 };

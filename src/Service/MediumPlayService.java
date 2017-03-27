@@ -51,7 +51,7 @@ public class MediumPlayService {
         return result;
     }
 
-    public void validateCheckedRows(String[] positions){
+    private void validateCheckedRows(String[] positions){
         if (!positions[0].equals("empty") && !positions[1].equals("empty") && !positions[2].equals("empty")){
             checkedRows[0] = true;
         }
@@ -84,7 +84,6 @@ public class MediumPlayService {
 
         Random r = new Random();
         int chanceForHuman = r.nextInt(100);
-
 
         if (chanceForHuman < chanceForHuman1) {
             result = this.checkForWinningHorizontal(positions, computersChar);

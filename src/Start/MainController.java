@@ -19,7 +19,7 @@ public class MainController extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         stage.setTitle("Tic Tac Toe");
-        initPcGameGui();
+        initLoginGui();
 
 
     }
@@ -84,10 +84,10 @@ public class MainController extends Application {
 
     public void initPcGameGui() {
         try {
-//            LoginValidationService lvs = new LoginValidationService();
-//            if (!lvs.isLoggedIn()) {
-//                this.initLoginGui();
-//            }
+            LoginValidationService lvs = new LoginValidationService();
+            if (!lvs.isLoggedIn()) {
+                this.initLoginGui();
+            }
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/View/PcGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();

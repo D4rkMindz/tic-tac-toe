@@ -5,18 +5,20 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URLConnection;
 
-public class LoginValidationService {
-    public boolean loggedIn;
-    public static boolean error;
+public class RegisterService {
 
-    public boolean isLoginValid(String username, String password, boolean useProxy, String url) {
+    public static String error;
+
+    public boolean isRegistrationValid(String username, String email, String password, String password2, boolean useProxy, String url){
         ConnectionService connectionService = new ConnectionService();
         try {
             URLConnection connection = connectionService.initUrlConnection(useProxy, url);
             PrintStream printStream = connectionService.initPrintStream(connection);
 
             printStream.print("username=" + username);
-            printStream.print("&password=" + password);
+            printStream.print("&email=" + email);
+            printStream.print("&password1=" + password);
+            printStream.print("&password2=" + password2);
             connection.getInputStream();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -27,25 +29,21 @@ public class LoginValidationService {
                 check = line;
             }
             if (check.equalsIgnoreCase("ok")){
-                this.setError(true);
+                this.setError("ok");
                 return true;
+            } else if(check.equalsIgnoreCase("userExists")){
+                this.setError("userExists");
             } else {
-                this.setError(false);
+                this.setError("notOk");
                 return false;
             }
-
-
         } catch (Exception ex){
             ex.printStackTrace();
         }
         return false;
     }
 
-    private void setError(boolean err){
+    private void setError(String err){
         error = err;
-    }
-
-    public boolean isLoggedIn() {
-        return this.loggedIn;
     }
 }

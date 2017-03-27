@@ -1,8 +1,10 @@
 package Controller;
 
 import Service.LoginValidationService;
+import Service.ProxyService;
 import Start.MainController;
 
+import env.Environment;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,7 +43,10 @@ public class LoginController {
         String password = this.password.getText();
 
         LoginValidationService loginValServ = new LoginValidationService();
-        if (loginValServ.isLoginValid(username, password)) {
+        Environment env = new Environment();
+        ProxyService proxyService = new ProxyService();
+
+        if (loginValServ.isLoginValid(username, password, proxyService.useProxy , env.loginUrl)) {
             mainController.initStartGui();
         } else {
             mainController.initLoginGui();
