@@ -21,6 +21,6 @@ public class StartController {
 
     @FXML
     private void playVsFriend() {
-        mainController.initLoginGui();
+        mainController.initOnlinePlayerList();
     }
 }

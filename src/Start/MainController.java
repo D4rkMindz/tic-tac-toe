@@ -119,4 +119,22 @@ public class MainController extends Application {
             e.printStackTrace();
         }
     }
+
+
+    public void initOnlinePlayerList() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/View/OnlinePlayers.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            OnlinePlayersController controller = loader.getController();
+            controller.setStart(this);
+
+            Scene scene = new Scene(anchorPane);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

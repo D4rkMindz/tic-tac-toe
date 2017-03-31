@@ -20,6 +20,7 @@ public class LoginController {
     public Button Login;
     public Label errorMessage;
 
+    @FXML
     public void setStart(MainController mainController) {
 
         this.mainController = mainController;
