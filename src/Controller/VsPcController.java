@@ -2,16 +2,13 @@ package Controller;
 
 import Service.EasyPlayService;
 import Service.MediumPlayService;
-import Service.PlayService;
+import Service.PcPlayService;
 import Start.MainController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import sun.applet.Main;
-
-import java.util.Random;
 
 
 public class VsPcController {
@@ -108,7 +105,7 @@ public class VsPcController {
                     if (hasEnded) {
                         return;
                     }
-                    PlayService playService = new PlayService();
+                    PcPlayService PcPlayService = new PcPlayService();
                     if (player == 'x') {
                         String image = VsPcController.class.getResource("/img/cross.png").toExternalForm();
                         btn.setStyle("-fx-background-image: url(" + image + ");" +
@@ -121,7 +118,7 @@ public class VsPcController {
                         playsPossible--;
                         positions[nr] = "cross";
 
-                        if (playService.checkWinner(positions)) {
+                        if (PcPlayService.checkWinner(positions)) {
                             setStart(mainController);
                         }
 
@@ -140,7 +137,7 @@ public class VsPcController {
                         playsPossible--;
                         positions[nr] = "circle";
 
-                        if (playService.checkWinner(positions)) {
+                        if (PcPlayService.checkWinner(positions)) {
                             Winner.setText("Player " + charWinner + " Won");
                         }
 

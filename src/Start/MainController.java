@@ -19,9 +19,8 @@ public class MainController extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         stage.setTitle("Tic Tac Toe");
-        initOnlinePlayerList();
 
-
+        initLoginGui();
     }
 
     public void initLoginGui() {
@@ -103,31 +102,17 @@ public class MainController extends Application {
         }
     }
 
-    public void initProxyGui() {
+    public void initFriendGameGui() {
         try {
+            LoginValidationService lvs = new LoginValidationService();
+            if (!lvs.isLoggedIn()) {
+                this.initLoginGui();
+            }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/View/ProxyGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/View/FriendGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            ProxyController controller = loader.getController();
-            controller.setStart(this);
-
-            Scene scene = new Scene(anchorPane);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void initOnlinePlayerList() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/View/OnlinePlayers.fxml"));
-            AnchorPane anchorPane = (AnchorPane) loader.load();
-
-            OnlinePlayersController controller = loader.getController();
+            VsFriendController controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);

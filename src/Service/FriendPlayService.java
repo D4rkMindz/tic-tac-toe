@@ -1,12 +1,9 @@
 package Service;
 
-import Controller.VsPcController;
+import Controller.VsFriendController;
 
-/**
- * Created by Björn on 24.03.2017.
- */
-public class PlayService {
-    public boolean checkWinner(String[] positions){
+public class FriendPlayService {
+    public boolean checkWinner(String[] positions) {
         if (this.horizontalRows(positions)) {
             return true;
         }
@@ -18,7 +15,7 @@ public class PlayService {
     }
 
     private boolean horizontalRows(String[] positions) {
-        VsPcController t = new VsPcController();
+        VsFriendController t = new VsFriendController();
         if (positions[0].equals("circle") && positions[1].equals("circle") && positions[2].equals("circle")) {
             t.setWinner('o');
             return true;
@@ -47,7 +44,7 @@ public class PlayService {
     }
 
     private boolean verticalRows(String[] positions) {
-        VsPcController t = new VsPcController();
+        VsFriendController t = new VsFriendController();
         if (positions[0].equals("circle") && positions[3].equals("circle") && positions[6].equals("circle")) {
             t.setWinner('o');
             return true;
@@ -75,8 +72,8 @@ public class PlayService {
         return false;
     }
 
-    private boolean crosses(String[] positions){
-        VsPcController t = new VsPcController();
+    private boolean crosses(String[] positions) {
+        VsFriendController t = new VsFriendController();
         if (positions[0].equals("circle") && positions[4].equals("circle") && positions[8].equals("circle")) {
             t.setWinner('o');
             return true;

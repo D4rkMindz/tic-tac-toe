@@ -15,12 +15,17 @@ public class StartController {
     }
 
     @FXML
+    private void playVsFriend(){
+        mainController.initFriendGameGui();
+    }
+
+    @FXML
     private void playVsPc() {
         mainController.initPcGameGui();
     }
 
     @FXML
-    private void playVsFriend() {
-        mainController.initOnlinePlayerList();
+    private void logOut() {
+        mainController.initLoginGui();
     }
 }

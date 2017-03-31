@@ -17,11 +17,11 @@ import java.net.URLConnection;
 public class ConnectionService {
     private String password = "";
 
-    public void setProxyPassword(String pass){
+    public void setProxyPassword(String pass) {
         password = pass;
     }
 
-    public URLConnection initUrlConnection(boolean useProxy, String url) throws IOException {
+    public URLConnection    initUrlConnection(boolean useProxy, String url) throws IOException {
         URLConnection con = null;
 //        String url = "http://files.d4rkmindz.ch/tictactoe.php";
 
@@ -29,15 +29,15 @@ public class ConnectionService {
         try {
 
             if (useProxy) {
-                ProxyService proxyService = new ProxyService();
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyService.ip, proxyService.port));
+                // Copied from http://stackoverflow.com/questions/1432961/how-do-i-make-httpurlconnection-use-a-proxy
+                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("172.20.10.11", 3128));
                 con = new URL(url).openConnection(proxy);
 
                 Authenticator authenticator = new Authenticator() {
 
                     public PasswordAuthentication getPasswordAuthentication() {
-                        return (new PasswordAuthentication(proxyService.username,
-                                password.toCharArray()));
+                        return (new PasswordAuthentication("bjoern.pfoster",
+                                "Ulmi244313!".toCharArray()));
                     }
                 };
                 Authenticator.setDefault(authenticator);

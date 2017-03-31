@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import sun.awt.image.ImageWatched;
 
 public class RegisterController {
     public TextField username, email, password1, password2;
@@ -26,9 +25,8 @@ public class RegisterController {
         this.mainController = mainController;
         String err = registerService.error;
         if (err == null || err.equalsIgnoreCase("ok")) {
-            if (success){
+            if (success == true){
                 this.successMessage.setText("Credentials Accepted");
-                this.register.isDisabled();
             }
         } else if (err.equalsIgnoreCase("notOk")) {
             this.errorMessage.setText("Invalid Credentials");
@@ -61,7 +59,7 @@ public class RegisterController {
         ProxyService proxyService = new ProxyService();
         Environment env = new Environment();
 
-        if (registerService.isRegistrationValid(username, email, password1, password2, proxyService.useProxy, env.registerUrl)) {
+        if (registerService.isRegistrationValid(username, email, password1, password2, proxyService.getUseProxy(), env.getRegisterUrl())) {
             success = true;
         }
         mainController.initRegisterGui();
