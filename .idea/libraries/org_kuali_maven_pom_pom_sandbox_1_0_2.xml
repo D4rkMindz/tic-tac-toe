@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.kuali.maven.pom:pom-sandbox:1.0.2" type="repository">
+    <properties maven-id="org.kuali.maven.pom:pom-sandbox:1.0.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/kuali/maven/pom/pom-sandbox/1.0.2/pom-sandbox-1.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

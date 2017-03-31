@@ -19,7 +19,7 @@ public class MainController extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         stage.setTitle("Tic Tac Toe");
-        initLoginGui();
+        initOnlinePlayerList();
 
 
     }
