@@ -10,18 +10,35 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-
+/**
+ * Class LoginController.
+ */
 public class LoginController {
-    @FXML
-    private MainController mainController;
+    /**
+     * Class variables.
+     */
+    private boolean success, useProxy = false;
+
+    /**
+     * All used controls from View.
+     */
     public TextField username;
     public TextField password;
-    public Button Register;
-    public Button Login;
     public Label errorMessage;
 
-    public boolean success;
+    /**
+     * mainController.
+     */
+    @FXML
+    private MainController mainController;
 
+    /**
+     * Set start function.
+     *
+     * This function is used to set the maincontroller and to manipulate the View
+     *
+     * @param mainController
+     */
     @FXML
     public void setStart(MainController mainController) {
 
@@ -32,8 +49,10 @@ public class LoginController {
         if (!err) {
             this.errorMessage.setText("Invalid Credentials");
         }
-        if (this.success){
+        if (useProxy) {
             this.errorMessage.setText("Proxysettings activated");
+        } else {
+            this.errorMessage.setText("Proxysettings deactivated");
         }
 
     }
@@ -62,10 +81,16 @@ public class LoginController {
 
     @FXML
     private void handleProxy() {
-
         ProxyService proxyService = new ProxyService();
-        proxyService.setUseProxy(true);
-        if (this.success){
+        if (useProxy) {
+            proxyService.setUseProxy(false);
+            useProxy = false;
+        } else {
+            proxyService.setUseProxy(true);
+            useProxy = true;
+        }
+
+        if (this.success) {
             this.success = false;
         } else {
             this.success = true;

@@ -12,32 +12,49 @@ import javafx.scene.control.Label;
 
 
 public class VsPcController {
-    @FXML
-    private static boolean hasEnded;
-    private static int computerLevel = 0;
-    private static char charWinner;
+    /**
+     * Array for clicked positions (button positions).
+     */
+    private String[] positions = new String[9];
 
+    /**
+     * Array to check, which button is active and which not.
+     */
+    private boolean[] btnActive = new boolean[9];
+
+    /**
+     * Class variables.
+     */
     private char player = 'x';
     private char humanPlaysWith = 'x';
     private int playsPossible = 9;
+    private static boolean hasEnded;
+    private static char charWinner;
+    private static int computerLevel = 0;
 
-    private String[] positions = new String[9];
 
+    /**
+     * All used controls from View.
+     */
     @FXML
     private Button[] btnArray = new Button[9];
-
-    @FXML
     public Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, easy, medium, hard;
-
-    @FXML
-    private boolean[] btnActive = new boolean[9];
-
-    @FXML
     public Label Winner;
 
+    /**
+     * mainController.
+     */
     @FXML
     private MainController mainController;
 
+    /**
+     * Set start function.
+     * <p>
+     * This function is used to set the maincontroller and to manipulate the View.
+     *
+     * @param mainController
+     */
+    @FXML
     public void setStart(MainController mainController) {
         this.mainController = mainController;
         this.setDefaults();
@@ -188,7 +205,7 @@ public class VsPcController {
         if (computerLevel == 1) {
             this.playMedium();
         }
-        if (computerLevel == 2){
+        if (computerLevel == 2) {
             this.playHard();
         }
     }
@@ -216,12 +233,12 @@ public class VsPcController {
         } else {
             computerPlayWith = 'x';
         }
-        int result = mediumPlayService.playMedium(positions, computerPlayWith, playsPossible, btnActive, 50,70);
+        int result = mediumPlayService.playMedium(positions, computerPlayWith, playsPossible, btnActive, 50, 70);
         Button btn = btnArray[result];
         btn.fire();
     }
 
-    private void playHard(){
+    private void playHard() {
         MediumPlayService mediumPlayService = new MediumPlayService();
         char computerPlayWith;
         if (humanPlaysWith == 'x') {
@@ -229,7 +246,7 @@ public class VsPcController {
         } else {
             computerPlayWith = 'x';
         }
-        int result = mediumPlayService.playMedium(positions, computerPlayWith, playsPossible, btnActive, 80,100);
+        int result = mediumPlayService.playMedium(positions, computerPlayWith, playsPossible, btnActive, 80, 100);
         Button btn = btnArray[result];
         btn.fire();
     }

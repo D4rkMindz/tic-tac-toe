@@ -21,11 +21,19 @@ public class ConnectionService {
         password = pass;
     }
 
-    public URLConnection    initUrlConnection(boolean useProxy, String url) throws IOException {
+    /**
+     * Initialize URL connection.
+     * <p>
+     * This function is used to connect to an URL. It will return a URLConnection Object. After this function you need
+     * to use the initPrintStream() function.
+     *
+     * @param useProxy boolean, indicates, if proxy-settings should be used
+     * @param url      String, URL you want to connect
+     * @return con URLConnection
+     * @throws IOException
+     */
+    public URLConnection initUrlConnection(boolean useProxy, String url) throws IOException {
         URLConnection con = null;
-//        String url = "http://files.d4rkmindz.ch/tictactoe.php";
-
-
         try {
 
             if (useProxy) {
@@ -54,6 +62,17 @@ public class ConnectionService {
 
     }
 
+    /**
+     * Initialize Print Stream.
+     * <p>
+     * After you called the initUrlConnection() function, you need to use the initPrintStream() function. You can use
+     * the internal .print() function on the returned object. The .print() function is used to send data via HTTP-POST
+     * to the Server
+     *
+     * @param con URLConnection, connection from initUrlConnection()
+     * @return ps PrintStream
+     * @throws IOException
+     */
     public PrintStream initPrintStream(URLConnection con) throws IOException {
         PrintStream ps = null;
         try {

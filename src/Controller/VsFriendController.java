@@ -9,35 +9,49 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
- * Created by Björn on 17.03.2017.
+ * Class VsFriendController.
  */
 public class VsFriendController {
-    @FXML
-    private static boolean hasEnded;
-    private static int computerLevel = 0;
-    private static char charWinner;
-    private int playsPossible = 9;
-
-
+    /**
+     * Array for clicked positions (button positions).
+     */
     private String[] positions = new String[9];
 
-    @FXML
-    private Button[] btnArray = new Button[9];
-
-    @FXML
-    public Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
-
-    @FXML
+    /**
+     * Array to check, which button is active and which not.
+     */
     private boolean[] btnActive = new boolean[9];
 
+    /**
+     * Class variables.
+     */
+    private char player = 'x';
+    private int playsPossible = 9;
+    private static boolean hasEnded;
+    private static char charWinner;
+
+    /**
+     * All used controls from View.
+     */
     @FXML
+    private Button[] btnArray = new Button[9];
+    public Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
     public Label FriendWinner;
 
-    private char player = 'x';
-
+    /**
+     * mainController.
+     */
     @FXML
     private MainController mainController;
 
+    /**
+     * Set start function.
+     *
+     * This function is used to set the maincontroller and to manipulate the View.
+     *
+     * @param mainController
+     */
+    @FXML
     public void setStart(MainController mainController) {
         this.mainController = mainController;
         this.mainController = mainController;

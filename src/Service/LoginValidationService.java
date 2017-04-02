@@ -10,7 +10,7 @@ public class LoginValidationService {
     public static boolean error;
 
     public boolean isLoginValid(String username, String password, boolean useProxy, String url) {
-           ConnectionService connectionService = new ConnectionService();
+        ConnectionService connectionService = new ConnectionService();
         try {
             URLConnection connection = connectionService.initUrlConnection(useProxy, url);
             PrintStream printStream = connectionService.initPrintStream(connection);

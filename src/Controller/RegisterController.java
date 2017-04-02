@@ -9,16 +9,38 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * Class RegisterController.
+ */
 public class RegisterController {
-    public TextField username, email, password1, password2;
-    public Label errorMessage, successMessage;
-    public Button register;
+    /**
+     * Class variables.
+     */
     private static String tempUsername, tempEmail, tempPassword1, tempPassword2;
     private static boolean success = false;
 
+    /**
+     * All used controls from View.
+     */
+    @FXML
+    public TextField username, email, password1, password2;
+    public Label errorMessage, successMessage;
+    public Button register;
+
+    /**
+     * mainController.
+     */
     @FXML
     private MainController mainController;
 
+    /**
+     * Set start function.
+     *
+     * This function is used to set the maincontroller and to manipulate the View.
+     *
+     * @param mainController
+     */
+    @FXML
     public void setStart(MainController mainController) {
         RegisterService registerService = new RegisterService();
 
