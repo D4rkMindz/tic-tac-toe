@@ -13,7 +13,7 @@ public class LoginValidationService {
            ConnectionService connectionService = new ConnectionService();
         try {
             URLConnection connection = connectionService.initUrlConnection(useProxy, url);
-//            PrintStream printStream = connectionService.initPrintStream(connection);
+            PrintStream printStream = connectionService.initPrintStream(connection);
 
             printStream.print("username=" + username);
             printStream.print("&password=" + password);
