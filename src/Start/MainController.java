@@ -1,7 +1,8 @@
 package Start;
 
-import Controller.*;
-import Service.LoginValidationService;
+import Config.Settings;
+import Controllers.*;
+import Services.LoginValidationService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,13 +20,13 @@ public class MainController extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         stage.setTitle("Tic Tac Toe");
-
+        Settings.Init("prod");
         initLoginGui();
     }
 
     public void initLoginGui() {
         try {
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/View/LoginGui.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/Resources/Views/LoginGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             LoginController controller = loader.getController();
@@ -46,7 +47,7 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/View/RegisterGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/Resources/Views/RegisterGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             RegisterController controller = loader.getController();
@@ -67,7 +68,7 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/View/StartGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/Resources/Views/StartGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             StartController controller = loader.getController();
@@ -88,7 +89,7 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/View/PcGameGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/Resources/Views/PcGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             VsPcController controller = loader.getController();
@@ -109,7 +110,7 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/View/FriendGameGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/Resources/Views/FriendGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             VsFriendController controller = loader.getController();
