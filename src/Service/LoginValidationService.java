@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URLConnection;
+import java.net.HttpURLConnection;
 
 public class LoginValidationService {
     public static boolean loggedIn;
@@ -12,17 +13,27 @@ public class LoginValidationService {
     public boolean isLoginValid(String username, String password, boolean useProxy, String url) {
         ConnectionService connectionService = new ConnectionService();
         try {
-            URLConnection connection = connectionService.initUrlConnection(useProxy, url);
+            HttpURLConnection connection = connectionService.initUrlConnection(useProxy, url);
             PrintStream printStream = connectionService.initPrintStream(connection);
 
             printStream.print("username=" + username);
             printStream.print("&password=" + password);
             connection.getInputStream();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedReader reader = null;
+            Object message = connection.getHeaderFields();
+            Object code = connection.getResponseCode();
+            if (connection.getResponseCode() == 200) {
+                reader = new BufferedReader(new
+                        InputStreamReader(connection.getInputStream()));
+            } else {
+                reader = new BufferedReader(new
+                        InputStreamReader(connection.getErrorStream()));
+            }
             String line = null;
             String check = "notOk";
-            while ((line = in.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
+//                System.out.print(line);
                 check = line;
             }
             if (check.equalsIgnoreCase("ok")) {

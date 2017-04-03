@@ -5,13 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.net.Authenticator;
-import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.net.PasswordAuthentication;
-import java.net.Proxy;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 
 
 public class ConnectionService {
@@ -32,7 +26,7 @@ public class ConnectionService {
      * @return con URLConnection
      * @throws IOException
      */
-    public URLConnection initUrlConnection(boolean useProxy, String url) throws IOException {
+    public HttpURLConnection initUrlConnection(boolean useProxy, String url) throws IOException {
         URLConnection con = null;
         try {
 
@@ -58,7 +52,10 @@ public class ConnectionService {
             e.printStackTrace();
         }
 
-        return con;
+        HttpURLConnection connection = (HttpURLConnection)con;
+        connection.setInstanceFollowRedirects(true);
+        connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+        return connection;
 
     }
 
