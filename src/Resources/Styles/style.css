@@ -11,6 +11,21 @@ Style Sheet for TicTacToe Application
     -fx-boder-color: white;
 }
 
+.text-field, .password-field{
+    -fx-border-color: black;
+    -fx-border-radius: 0;
+    -fx-background-color: white;
+}
+
+.hyperlink {
+    -fx-underline: false;
+    -fx-text-fill: gray;
+}
+
+.hyperlink:hover {
+    -fx-underline: true;
+}
+
 .reset {
     -fx-background-color: black;
 }

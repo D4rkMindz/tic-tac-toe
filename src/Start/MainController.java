@@ -123,4 +123,21 @@ public class MainController extends Application {
             e.printStackTrace();
         }
     }
+
+    public void initProxyGui() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/Resources/Views/ProxyGui.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            ProxyController controller = loader.getController();
+            controller.setStart(this);
+
+            Scene scene = new Scene(anchorPane);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

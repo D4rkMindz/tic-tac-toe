@@ -1,6 +1,5 @@
 package Controllers;
 
-import Config.Settings;
 import Services.LoginValidationService;
 import Start.MainController;
 
@@ -41,17 +40,7 @@ public class LoginController {
     @FXML
     public void setStart(MainController mainController) {
         this.mainController = mainController;
-        boolean err = new LoginValidationService().error;
-
-        if (Settings.proxy.useProxy) {
-            this.errorMessage.setText("Proxysettings activated");
-        } else if (!err || Settings.proxy.useProxy) {
-            this.errorMessage.setText("Invalid Credentials");
-        } else {
-            this.errorMessage.setText("Proxysettings deactivated");
-        }
-
-
+        this.errorMessage.setText("");
     }
 
     /**
@@ -81,6 +70,7 @@ public class LoginController {
             mainController.initStartGui();
         } else {
             this.password.setText("");
+            this.errorMessage.setText("Invalid Credentials");
         }
     }
 
@@ -91,17 +81,6 @@ public class LoginController {
      */
     @FXML
     private void proxyLinkOnClick() {
-        if (useProxy) {
-            Settings.proxy.useProxy = false;
-        } else {
-            Settings.proxy.useProxy = true;
-        }
-
-        if (this.success) {
-            this.success = false;
-        } else {
-            this.success = true;
-        }
-        this.setStart(mainController);
+        mainController.initProxyGui();
     }
 }
