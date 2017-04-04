@@ -1,9 +1,9 @@
-package Controllers;
+package forms;
 
-import Services.EasyPlayService;
-import Services.MediumPlayService;
-import Services.PcPlayService;
-import Start.MainController;
+import service.EasyPlayService;
+import service.MediumPlayService;
+import service.PcPlayService;
+import start.MainController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
-public class VsPcController {
+public class VsPcForm {
     /**
      * Array for clicked positions (button positions).
      */
@@ -34,7 +34,7 @@ public class VsPcController {
 
 
     /**
-     * All used controls from Resources.Views.
+     * All used controls from resource.view.
      */
     @FXML
     private Button[] btnArray = new Button[9];
@@ -50,7 +50,7 @@ public class VsPcController {
     /**
      * Set start function.
      * <p>
-     * This function is used to set the maincontroller and to manipulate the Resources.Views.
+     * This function is used to set the maincontroller and to manipulate the resource.view.
      *
      * @param mainController
      */
@@ -135,7 +135,7 @@ public class VsPcController {
                     }
                     PcPlayService PcPlayService = new PcPlayService();
                     if (player == 'x') {
-                        String image = VsPcController.class.getResource("/Resources/Images/cross.png").toExternalForm();
+                        String image = VsPcForm.class.getResource("/resource/image/cross.png").toExternalForm();
                         btn.setStyle("-fx-background-image: url(" + image + ");" +
                                 "-fx-background-size: 40 40;" +
                                 "-fx-background-repeat: no-repeat;" +
@@ -154,7 +154,7 @@ public class VsPcController {
                             computerPlay();
                         }
                     } else {
-                        String image = VsPcController.class.getResource("/Resources/Images/circle.png").toExternalForm();
+                        String image = VsPcForm.class.getResource("/resource/image/circle.png").toExternalForm();
                         btn.setStyle("-fx-background-image: url(" + image + ");" +
                                 "-fx-background-size: 40 40;" +
                                 "-fx-background-repeat: no-repeat;" +
@@ -183,7 +183,7 @@ public class VsPcController {
      */
     public void setDifficultyEasy() {
         computerLevel = 0;
-        reset();
+        resetOnClick();
     }
 
     /**
@@ -191,7 +191,7 @@ public class VsPcController {
      */
     public void setDifficultyMedium() {
         computerLevel = 1;
-        reset();
+        resetOnClick();
     }
 
     /**
@@ -199,7 +199,7 @@ public class VsPcController {
      */
     public void setDifficultyHard() {
         computerLevel = 2;
-        reset();
+        resetOnClick();
     }
 
     /**
@@ -207,16 +207,16 @@ public class VsPcController {
      * <p>
      * This function resets every state to the beginning state.
      */
-    public void reset() {
+    public void resetOnClick() {
         hasEnded = false;
         charWinner = ' ';
         mainController.initPcGameGui();
     }
 
     /**
-     * Return back to previous screen.
+     * Return backOnClick to previous screen.
      */
-    public void back() {
+    public void backOnClick() {
         hasEnded = false;
         charWinner = ' ';
         mainController.initStartGui();

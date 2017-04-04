@@ -1,6 +1,6 @@
-package Services;
+package service;
 
-import Config.Settings;
+import config.Settings;
 
 import java.util.Hashtable;
 
@@ -9,6 +9,7 @@ public class RegisterService {
      * Error variable
      */
     public static String error;
+    public static String success;
 
     /**
      * Validate Registration.
@@ -23,6 +24,22 @@ public class RegisterService {
      * @return boolean true if user is successfully inserted into database
      */
     public boolean isRegistrationValid(String username, String email, String password, String password2) {
+        if (username.length() <= 3) {
+            this.setError("Username too short");
+            return false;
+        }
+        if (email.length() <= 3) {
+            this.setError("Email too short");
+            return false;
+        }
+        if (!password.equals(password2)) {
+            this.setError("Passwords aren't equal");
+            return false;
+        }
+        if (password.length() <= 3 || password2.length() <= 3) {
+            this.setError("Passwords too short");
+            return false;
+        }
         ConnectionService connectionService = new ConnectionService();
         Hashtable<String, String> parameters = new Hashtable<String, String>();
         //add key-value pair to Hashtable
@@ -33,12 +50,15 @@ public class RegisterService {
         try {
             String response = connectionService.call(Settings.registerUrl, parameters);
             if (response.equalsIgnoreCase("ok")) {
-                this.setError("ok");
+                this.setSuccess("User created");
+                this.setError("");
                 return true;
             } else if (response.equalsIgnoreCase("userExists")) {
-                this.setError("userExists");
+                this.setSuccess("");
+                this.setError("User already exists");
             } else {
-                this.setError("notOk");
+                this.setSuccess("");
+                this.setError("Invalid credentials");
                 return false;
             }
         } catch (Exception ex) {
@@ -54,5 +74,14 @@ public class RegisterService {
      */
     private void setError(String err) {
         error = err;
+    }
+
+    /**
+     * Set Successmessage into error variable.
+     *
+     * @param succ with successmessage
+     */
+    private void setSuccess(String succ) {
+        success = succ;
     }
 }

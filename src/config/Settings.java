@@ -1,4 +1,4 @@
-package Config;
+package config;
 
 /**
  * Class Settings

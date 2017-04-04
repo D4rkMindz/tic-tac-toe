@@ -1,7 +1,6 @@
-package Services;
+package service;
 
-import Config.Proxy;
-import Config.Settings;
+import config.Settings;
 
 import java.io.BufferedReader;
 

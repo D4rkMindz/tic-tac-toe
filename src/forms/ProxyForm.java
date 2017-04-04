@@ -1,26 +1,24 @@
-package Controllers;
+package forms;
 
 
-import Config.Settings;
-import Start.MainController;
+import config.Settings;
+import start.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ProxyController {
-    /**
-     * Class variables.
-     */
-    private boolean success, useProxy = false;
+import java.util.regex.Pattern;
 
+public class ProxyForm {
     /**
-     * All used controls from Resources.Views.
+     * All used controls from resource.view.
      */
     public TextField ip;
     public TextField port;
     public TextField username;
     public TextField password;
     public Label successMessage;
+    public Label errorMessage;
 
     /**
      * mainController.
@@ -31,7 +29,7 @@ public class ProxyController {
     /**
      * Set start function.
      * <p>
-     * This function is used to set the maincontroller and to manipulate the Resources.Views
+     * This function is used to set the maincontroller and to manipulate the resource.view
      *
      * @param mainController MainController
      */
@@ -45,15 +43,20 @@ public class ProxyController {
         }
     }
 
-    public void returnToLogin(){
+    public void returnToLoginOnClick(){
         mainController.initLoginGui();
     }
 
-    public void handleSettings(){
+    public void SaveSettingsOnClick(){
         String ip = this.ip.getText();
         int port = Integer.parseInt(this.port.getText());
         String username = this.username.getText();
         String password = this.password.getText();
+
+        if (!Pattern.matches("^\\d*$", this.port.getText())){
+            this.errorMessage.setText("Port must be a number");
+        }
+
 
         Settings.proxy.useProxy = true;
         Settings.proxy.ip = ip;
@@ -63,7 +66,7 @@ public class ProxyController {
         this.successMessage.setText("Proxy Activated");
     }
 
-    public void discardSettings(){
+    public void discardSettingsOnClick(){
         Settings.proxy.useProxy = false;
         Settings.proxy.ip = "";
         Settings.proxy.port = 0;

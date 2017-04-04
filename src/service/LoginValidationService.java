@@ -1,6 +1,6 @@
-package Services;
+package service;
 
-import Config.Settings;
+import config.Settings;
 
 import java.util.Hashtable;
 

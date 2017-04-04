@@ -1,8 +1,8 @@
-package Start;
+package start;
 
-import Config.Settings;
-import Controllers.*;
-import Services.LoginValidationService;
+import config.Settings;
+import forms.*;
+import service.LoginValidationService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,10 +26,10 @@ public class MainController extends Application {
 
     public void initLoginGui() {
         try {
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/Resources/Views/LoginGui.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/resource/view/LoginGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            LoginController controller = loader.getController();
+            LoginForm controller = loader.getController();
             controller.setStart(this);
 
             scene = new Scene(anchorPane);
@@ -47,10 +47,10 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/Resources/Views/RegisterGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/resource/view/RegisterGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            RegisterController controller = loader.getController();
+            RegisterForm controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);
@@ -68,10 +68,10 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/Resources/Views/StartGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/resource/view/StartGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            StartController controller = loader.getController();
+            StartForm controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);
@@ -89,10 +89,10 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/Resources/Views/PcGameGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/resource/view/PcGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            VsPcController controller = loader.getController();
+            VsPcForm controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);
@@ -110,10 +110,10 @@ public class MainController extends Application {
                 this.initLoginGui();
             }
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/Resources/Views/FriendGameGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/resource/view/FriendGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            VsFriendController controller = loader.getController();
+            VsFriendForm controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);
@@ -127,10 +127,10 @@ public class MainController extends Application {
     public void initProxyGui() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/Resources/Views/ProxyGui.fxml"));
+            loader.setLocation(MainController.class.getResource("/resource/view/ProxyGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            ProxyController controller = loader.getController();
+            ProxyForm controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);

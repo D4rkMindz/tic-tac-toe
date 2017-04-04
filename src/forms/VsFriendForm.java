@@ -1,7 +1,7 @@
-package Controllers;
+package forms;
 
-import Services.FriendPlayService;
-import Start.MainController;
+import service.FriendPlayService;
+import start.MainController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,9 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
- * Class VsFriendController.
+ * Class VsFriendForm.
  */
-public class VsFriendController {
+public class VsFriendForm {
     /**
      * Array for clicked positions (button positions).
      */
@@ -31,7 +31,7 @@ public class VsFriendController {
     private static char charWinner;
 
     /**
-     * All used controls from Resources.Views.
+     * All used controls from resource.view.
      */
     @FXML
     private Button[] btnArray = new Button[9];
@@ -47,7 +47,7 @@ public class VsFriendController {
     /**
      * Set start function.
      * <p>
-     * This function is used to set the maincontroller and to manipulate the Resources.Views.
+     * This function is used to set the maincontroller and to manipulate the resource.view.
      *
      * @param mainController
      */
@@ -122,7 +122,7 @@ public class VsFriendController {
                     }
                     FriendPlayService friendPlayService = new FriendPlayService();
                     if (player == 'x') {
-                        String image = VsPcController.class.getResource("/Resources/Images/cross.png").toExternalForm();
+                        String image = VsPcForm.class.getResource("/resource/image/cross.png").toExternalForm();
                         btn.setStyle("-fx-background-image: url(" + image + ");" +
                                 "-fx-background-size: 40 40;" +
                                 "-fx-background-repeat: no-repeat;" +
@@ -138,7 +138,7 @@ public class VsFriendController {
                         }
 
                     } else {
-                        String image = VsPcController.class.getResource("/Resources/Images/circle.png").toExternalForm();
+                        String image = VsPcForm.class.getResource("/resource/image/circle.png").toExternalForm();
                         btn.setStyle("-fx-background-image: url(" + image + ");" +
                                 "-fx-background-size: 40 40;" +
                                 "-fx-background-repeat: no-repeat;" +
@@ -178,17 +178,17 @@ public class VsFriendController {
      * This function resets every state to the beginning state.
      */
     @FXML
-    public void reset() {
+    public void resetOnClick() {
         hasEnded = false;
         charWinner = ' ';
         mainController.initFriendGameGui();
     }
 
     /**
-     * Return back to previous screen.
+     * Return backOnClick to previous screen.
      */
     @FXML
-    public void back() {
+    public void backOnClick() {
         mainController.initStartGui();
     }
 }

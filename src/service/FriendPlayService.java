@@ -1,18 +1,36 @@
-package Services;
+package service;
 
-import Controllers.VsPcController;
+import forms.VsFriendForm;
 
-public class PcPlayService {
+/**
+ * Class FriendPlayService.
+ */
+public class FriendPlayService {
+    /**
+     * Check for the winner.
+     * <p>
+     * This function checks, if someone already won the game.
+     *
+     * @param positions String Array with all positions and their state
+     * @return boolean true if someone won already
+     */
     public boolean checkWinner(String[] positions) {
-        if (this.horizontalRows(positions) || this.verticalRows(positions)) {
+        if (this.horizontalRows(positions)|| this.verticalRows(positions)) {
             return true;
         }
         return this.crosses(positions);
-
     }
 
+    /**
+     * Check horizontal rows.
+     * <p>
+     * This function checks, if someone already won by placing all his three signs on a horizonal row
+     *
+     * @param positions String Array with all positions and their state
+     * @return boolean true if someone managed it to win
+     */
     private boolean horizontalRows(String[] positions) {
-        VsPcController t = new VsPcController();
+        VsFriendForm t = new VsFriendForm();
         if (positions[0].equals("circle") && positions[1].equals("circle") && positions[2].equals("circle")) {
             t.setWinner('o');
             return true;
@@ -40,8 +58,16 @@ public class PcPlayService {
         return false;
     }
 
+    /**
+     * Check vertical rows.
+     * <p>
+     * This function checks, if someone already won by placing all his three signs on a vertical row
+     *
+     * @param positions String Array with all positions and their state
+     * @return boolean true if someone managed it to win
+     */
     private boolean verticalRows(String[] positions) {
-        VsPcController t = new VsPcController();
+        VsFriendForm t = new VsFriendForm();
         if (positions[0].equals("circle") && positions[3].equals("circle") && positions[6].equals("circle")) {
             t.setWinner('o');
             return true;
@@ -69,8 +95,16 @@ public class PcPlayService {
         return false;
     }
 
+    /**
+     * Check crosses.
+     * <p>
+     * This function checks, if someone already won by placing all his three signs like a cross on the field
+     *
+     * @param positions String Array with all positions and their state
+     * @return boolean true if someone managed it to win
+     */
     private boolean crosses(String[] positions) {
-        VsPcController t = new VsPcController();
+        VsFriendForm t = new VsFriendForm();
         if (positions[0].equals("circle") && positions[4].equals("circle") && positions[8].equals("circle")) {
             t.setWinner('o');
             return true;

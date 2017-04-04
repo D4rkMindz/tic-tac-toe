@@ -1,15 +1,15 @@
-package Controllers;
+package forms;
 
-import Start.MainController;
+import start.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 /**
- * Class StartController.
+ * Class StartForm.
  */
-public class StartController {
+public class StartForm {
     /**
-     * All used controls from Resources.Views.
+     * All used controls from resource.view.
      */
     @FXML
     public Button playVsPc;
@@ -24,7 +24,7 @@ public class StartController {
     /**
      * Set start function.
      *
-     * This function is used to set the maincontroller and to manipulate the Resources.Views.
+     * This function is used to set the maincontroller and to manipulate the resource.view.
      *
      * @param mainController MainController
      */
@@ -37,7 +37,7 @@ public class StartController {
      * Initialize Play GUI to play against a friend.
      */
     @FXML
-    private void playVsFriend(){
+    private void playVsFriendOnClick(){
         mainController.initFriendGameGui();
     }
 
@@ -45,15 +45,15 @@ public class StartController {
      * Initialize Play GUI to play against the Computer.
      */
     @FXML
-    private void playVsPc() {
+    private void playVsPcOnClick() {
         mainController.initPcGameGui();
     }
 
     /**
-     * Return back to the login screen.
+     * Return backOnClick to the login screen.
      */
     @FXML
-    private void logOut() {
+    private void logOutOnClick() {
         mainController.initLoginGui();
     }
 }

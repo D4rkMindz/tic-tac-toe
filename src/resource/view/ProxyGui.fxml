@@ -8,14 +8,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../Styles/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProxyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.ProxyForm">
     <children>
         <TextField fx:id="ip" layoutX="226.0" layoutY="136.0" prefHeight="25.0" prefWidth="88.0" />
         <TextField fx:id="port" layoutX="367.0" layoutY="136.0" prefHeight="25.0" prefWidth="48.0" />
         <TextField fx:id="username" layoutX="226.0" layoutY="175.0" prefHeight="25.0" prefWidth="188.0" />
-        <Button layoutX="367.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="25.0" prefWidth="48.0" styleClass="reset" stylesheets="@../Styles/style.css" text="OK" />
-        <Button layoutX="165.0" layoutY="251.0" mnemonicParsing="false" onAction="#returnToLogin" styleClass="reset" stylesheets="@../Styles/style.css" text="Return" />
-      <Button layoutX="435.0" layoutY="346.0" mnemonicParsing="false" onAction="#discardSettings" prefHeight="25.0" prefWidth="130.0" styleClass="reset" stylesheets="@../Styles/style.css" text="Discard Settings" />
+        <Button layoutX="367.0" layoutY="251.0" mnemonicParsing="false" onAction="#SaveSettingsOnClick" prefHeight="25.0" prefWidth="48.0" styleClass="reset" stylesheets="@../style/style.css" text="OK" />
+        <Button layoutX="165.0" layoutY="251.0" mnemonicParsing="false" onAction="#returnToLoginOnClick" styleClass="reset" stylesheets="@../style/style.css" text="Return" />
+      <Button layoutX="435.0" layoutY="346.0" mnemonicParsing="false" onAction="#discardSettingsOnClick" prefHeight="25.0" prefWidth="130.0" styleClass="reset" stylesheets="@../style/style.css" text="Discard Settings" />
         <Label layoutX="164.0" layoutY="140.0" text="IP" />
         <Label layoutX="331.0" layoutY="140.0" text="Port" />
         <Label layoutX="164.0" layoutY="179.0" text="Username" />
@@ -27,5 +27,6 @@
         </Text>
         <Label fx:id="successMessage" alignment="CENTER" ellipsisString="" layoutX="206.0" layoutY="102.0" prefHeight="17.0" prefWidth="188.0" textAlignment="CENTER" textFill="#20ff03" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
       <PasswordField fx:id="password" layoutX="226.0" layoutY="212.0" prefHeight="25.0" prefWidth="188.0" />
+      <Label fx:id="errorMessage" alignment="CENTER" ellipsisString="" layoutX="206.0" layoutY="102.0" prefHeight="17.0" prefWidth="188.0" textAlignment="CENTER" textFill="#ff2605" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
     </children>
 </AnchorPane>

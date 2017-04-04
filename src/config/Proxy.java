@@ -1,4 +1,4 @@
-package Config;
+package config;
 
 public class Proxy {
     public boolean useProxy = false;

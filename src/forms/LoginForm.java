@@ -1,7 +1,7 @@
-package Controllers;
+package forms;
 
-import Services.LoginValidationService;
-import Start.MainController;
+import service.LoginValidationService;
+import start.MainController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,16 +9,11 @@ import javafx.scene.control.TextField;
 
 
 /**
- * Class LoginController.
+ * Class LoginForm.
  */
-public class LoginController {
+public class LoginForm {
     /**
-     * Class variables.
-     */
-    private boolean success, useProxy = false;
-
-    /**
-     * All used controls from Resources.Views.
+     * All used controls from resource.view.
      */
     public TextField username;
     public TextField password;
@@ -33,7 +28,7 @@ public class LoginController {
     /**
      * Set start function.
      * <p>
-     * This function is used to set the maincontroller and to manipulate the Resources.Views
+     * This function is used to set the maincontroller and to manipulate the resource.view
      *
      * @param mainController MainController
      */
