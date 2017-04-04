@@ -14,8 +14,6 @@ MySQL - 5.5.5-10.1.16-MariaDB : Database - tic-tac-toe
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-USE `d4kmind_tictactoe`;
-
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
