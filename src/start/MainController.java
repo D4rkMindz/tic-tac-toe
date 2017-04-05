@@ -1,7 +1,7 @@
 package start;
 
 import config.Settings;
-import forms.*;
+import form.*;
 import service.LoginValidationService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +11,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+/**
+ * Class MainController. (StartClass)
+ * This class manages the loading process of every GUI.
+ */
 public class MainController extends Application {
     private Stage stage;
     private Scene scene;
 
+    /**
+     * Everything begins here (because of "@Override" there is no usage for "public static void main(String[] args)". This is like the index.php file for Webdevelopers.
+     * @param primaryStage Stage
+     * @throws Exception if there was any failure
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
@@ -24,9 +32,13 @@ public class MainController extends Application {
         initLoginGui();
     }
 
+    /**
+     * Initialize Login Graphical User Interface
+     */
     public void initLoginGui() {
         try {
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/resource/view/LoginGui.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/resource/view/LoginGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             LoginForm controller = loader.getController();
@@ -40,12 +52,11 @@ public class MainController extends Application {
         }
     }
 
+    /**
+     * Initialize Registration Graphical User Interface
+     */
     public void initRegisterGui() {
         try {
-            LoginValidationService lvs = new LoginValidationService();
-            if (!lvs.isLoggedIn()) {
-                this.initLoginGui();
-            }
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/resource/view/RegisterGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
@@ -61,11 +72,35 @@ public class MainController extends Application {
         }
     }
 
+    /**
+     * Initialize Proxy management Graphical User Interface
+     */
+    public void initProxyGui() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/resource/view/ProxyGui.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            ProxyForm controller = loader.getController();
+            controller.setStart(this);
+
+            Scene scene = new Scene(anchorPane);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Initialize Start Graphical User Interface (Where you can choose between "Play against Computer"
+     * and "Play against Friend"
+     */
     public void initStartGui() {
         try {
-            LoginValidationService lvs = new LoginValidationService();
-            if (!lvs.isLoggedIn()) {
+            if (!LoginValidationService.loggedIn) {
                 this.initLoginGui();
+                return;
             }
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/resource/view/StartGui.fxml"));
@@ -82,11 +117,14 @@ public class MainController extends Application {
         }
     }
 
+    /**
+     * Initialize Game Graphical User Interface to play against the Computer
+     */
     public void initPcGameGui() {
         try {
-            LoginValidationService lvs = new LoginValidationService();
-            if (!lvs.isLoggedIn()) {
+            if (!LoginValidationService.loggedIn) {
                 this.initLoginGui();
+                return;
             }
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/resource/view/PcGameGui.fxml"));
@@ -103,34 +141,20 @@ public class MainController extends Application {
         }
     }
 
+    /**
+     * Initialize Game Graphical User Interface to play against a Friend
+     */
     public void initFriendGameGui() {
         try {
-            LoginValidationService lvs = new LoginValidationService();
-            if (!lvs.isLoggedIn()) {
+            if (!LoginValidationService.loggedIn) {
                 this.initLoginGui();
+                return;
             }
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/resource/view/FriendGameGui.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             VsFriendForm controller = loader.getController();
-            controller.setStart(this);
-
-            Scene scene = new Scene(anchorPane);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initProxyGui() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/resource/view/ProxyGui.fxml"));
-            AnchorPane anchorPane = (AnchorPane) loader.load();
-
-            ProxyForm controller = loader.getController();
             controller.setStart(this);
 
             Scene scene = new Scene(anchorPane);

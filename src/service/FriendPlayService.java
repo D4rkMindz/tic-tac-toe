@@ -1,9 +1,10 @@
 package service;
 
-import forms.VsFriendForm;
+import form.VsFriendForm;
 
 /**
  * Class FriendPlayService.
+ * This class is for the logic behind the VsFriendGameGui responsible.
  */
 public class FriendPlayService {
     /**

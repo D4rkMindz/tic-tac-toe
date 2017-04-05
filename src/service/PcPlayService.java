@@ -1,8 +1,19 @@
 package service;
 
-import forms.VsPcForm;
+import form.VsPcForm;
 
+/**
+ * Class PcPlayService
+ * This class is for the logic behind the VsPcGameGui responsible.
+ */
 public class PcPlayService {
+    /**
+     * This function manages the algorithms, which are checking if someone already won. In case of a victory, there will
+     * be returned true.
+     *
+     * @param positions String Array with all positions and their state
+     * @return true boolen if someone already won
+     */
     public boolean checkWinner(String[] positions) {
         if (this.horizontalRows(positions) || this.verticalRows(positions)) {
             return true;
@@ -11,6 +22,12 @@ public class PcPlayService {
 
     }
 
+    /**
+     * Algorithm to check the horizontal rows, if someone already won.
+     *
+     * @param positions String Array with all positions and their state
+     * @return true boolean if there is a victory
+     */
     private boolean horizontalRows(String[] positions) {
         VsPcForm t = new VsPcForm();
         if (positions[0].equals("circle") && positions[1].equals("circle") && positions[2].equals("circle")) {
@@ -40,6 +57,12 @@ public class PcPlayService {
         return false;
     }
 
+    /**
+     * Algorithm to check the vertical rows, if someone already won.
+     *
+     * @param positions String Array with all positions and their state
+     * @return true boolean if there is a victory
+     */
     private boolean verticalRows(String[] positions) {
         VsPcForm t = new VsPcForm();
         if (positions[0].equals("circle") && positions[3].equals("circle") && positions[6].equals("circle")) {
@@ -69,6 +92,12 @@ public class PcPlayService {
         return false;
     }
 
+    /**
+     * Algorithm to check the crosses, if someone already won.
+     *
+     * @param positions String Array with all positions and their state
+     * @return true boolean if there is a victory
+     */
     private boolean crosses(String[] positions) {
         VsPcForm t = new VsPcForm();
         if (positions[0].equals("circle") && positions[4].equals("circle") && positions[8].equals("circle")) {

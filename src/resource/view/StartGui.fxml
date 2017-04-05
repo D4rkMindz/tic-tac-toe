@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.StartForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="form.StartForm">
    <children>
       <Button fx:id="playVsFriend" layoutX="86.0" layoutY="160.0" mnemonicParsing="false" onAction="#playVsFriendOnClick" styleClass="reset" stylesheets="@/resource/style/style.css" text="Play against Friend" />
       <Button fx:id="playVsPc" layoutX="245.0" layoutY="160.0" mnemonicParsing="false" onAction="#playVsPcOnClick" styleClass="reset" stylesheets="@/resource/style/style.css" text="Play against Computer" />
